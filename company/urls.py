@@ -27,5 +27,6 @@ urlpatterns = [
     path('', home),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('api-auth/', include('rest_framework.urls')),
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0)),
 ]
