@@ -24,7 +24,7 @@ def home(request):
     })
 
 urlpatterns = [
-    path('', home),
+    path('', schema_view.with_ui('swagger', cache_timeout=0)),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
