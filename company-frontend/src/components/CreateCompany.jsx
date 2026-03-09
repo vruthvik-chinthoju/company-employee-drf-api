@@ -7,27 +7,47 @@ function CreateCompany() {
     name: "",
     location: "",
     about: "",
-    type: ""
+    type: "",
+    active: true
   });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setCompany({
       ...company,
-      [e.target.name]: e.target.value
+      [name]: value
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     await createCompany(company);
+
     alert("Company created");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="name" placeholder="Company Name" onChange={handleChange}/>
-      <input name="location" placeholder="Location" onChange={handleChange}/>
-      <input name="about" placeholder="About company" onChange={handleChange}/>
+
+      <input
+        name="name"
+        placeholder="Company Name"
+        onChange={handleChange}
+      />
+
+      <input
+        name="location"
+        placeholder="Location"
+        onChange={handleChange}
+      />
+
+      <input
+        name="about"
+        placeholder="About company"
+        onChange={handleChange}
+      />
 
       <select name="type" onChange={handleChange}>
         <option value="">Select type</option>
@@ -36,13 +56,14 @@ function CreateCompany() {
         <option value="Mobile-phones">Mobile Phones</option>
         <option value="Hr">HR</option>
       </select>
-      <input type="date" name="" id="" />
-      <select name="active">
-        <option value="True">True</option>
-        <option value="False">False</option>
+
+      <select name="active" onChange={handleChange}>
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
       </select>
 
       <button>Create Company</button>
+
     </form>
   );
 }

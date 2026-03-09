@@ -15,7 +15,8 @@ function CompanyList() {
       <h2>Companies</h2>
 
       {companies.map((company) => (
-        <div key={company.url}>
+        <div key={company.id}>
+          <h2>{company.id}</h2>
           <h3>{company.name}</h3>
           <p>Location: {company.location}</p>
           <p>Type: {company.type}</p>
