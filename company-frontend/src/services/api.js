@@ -1,12 +1,11 @@
 import axios from "axios";
 
-const API_URL = "https://company-employee-drf-api.onrender.com/api/employees/";
+const API = axios.create({
+  baseURL: "https://company-employee-drf-api.onrender.com/api/v1/"
+});
 
-export const getEmployees = () => axios.get(API_URL);
+export const getCompanies = () => API.get("companies/");
+export const createCompany = (data) => API.post("companies/", data);
 
-export const createEmployee = (data) => axios.post(API_URL, data);
-
-export const deleteEmployee = (id) => axios.delete(`${API_URL}${id}/`);
-
-export const updateEmployee = (id, data) =>
-  axios.put(`${API_URL}${id}/`, data);
+export const getEmployees = () => API.get("employees/");
+export const createEmployee = (data) => API.post("employees/", data);

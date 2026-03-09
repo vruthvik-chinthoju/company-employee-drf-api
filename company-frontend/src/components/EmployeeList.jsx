@@ -14,10 +14,14 @@ function EmployeeList() {
     <div>
       <h2>Employees</h2>
 
-      {employees.map((emp) => (
-        <div key={emp.id}>
+      {employees.map((emp, index) => (
+        <div key={index}>
           <h3>{emp.name}</h3>
-          <p>{emp.email}</p>
+          <p>Email: {emp.email_id}</p>
+          <p>Position: {emp.position}</p>
+          <p>Phone: {emp.phone_no}</p>
+          <p>Address: {emp.address}</p>
+          <hr />
         </div>
       ))}
     </div>
