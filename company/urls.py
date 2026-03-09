@@ -23,10 +23,15 @@ def home(request):
         "employees": "/api/v1/employees/",
     })
 
+
 urlpatterns = [
-    path('', schema_view.with_ui('swagger', cache_timeout=0)),
+    path('', home),  # Homepage JSON
+
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+
+    path('api/v1/', include('api.urls')),  # Versioned API
+
     path('api-auth/', include('rest_framework.urls')),
+
     path('docs/', schema_view.with_ui('swagger', cache_timeout=0)),
 ]
