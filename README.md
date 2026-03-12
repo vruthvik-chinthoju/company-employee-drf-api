@@ -133,7 +133,7 @@ The application demonstrates **full-stack development, REST API integration, and
 ![Backend](screenshots/backend.png)
 
 ### Mobile View
-![Mobile](screenshots/mobile.jpg)
+![Mobile](screenshots/mobike.jpg)
 
 ### Mobile Update
 ![Mobile Update](screenshots/mobile1.jpg)
