@@ -87,19 +87,25 @@ The application demonstrates **full-stack development, REST API integration, and
 
 ## Companies API
 
-| Method | Endpoint                                                                                                                       | Description            |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
-| GET    | [https://company-employee-drf-api.onrender.com/api/companies](https://company-employee-drf-api.onrender.com/api/companies)     | Get all companies      |
-| GET    | [https://company-employee-drf-api.onrender.com/api/companies/1](https://company-employee-drf-api.onrender.com/api/companies/1) | Get a specific company |
+| Method | Endpoint | Description |
+|------|------|------|
+| GET | https://company-employee-drf-api.onrender.com/api/companies | Get all companies |
+| GET | https://company-employee-drf-api.onrender.com/api/companies/1 | Get a specific company |
+| POST | https://company-employee-drf-api.onrender.com/api/companies | Create a new company |
+| PUT | https://company-employee-drf-api.onrender.com/api/companies/1 | Update a company |
+| DELETE | https://company-employee-drf-api.onrender.com/api/companies/1 | Delete a company |
 
 ---
 
 ## Employees API
 
-| Method | Endpoint                                                                                                                       | Description             |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------ | ----------------------- |
-| GET    | [https://company-employee-drf-api.onrender.com/api/employees](https://company-employee-drf-api.onrender.com/api/employees)     | Get all employees       |
-| GET    | [https://company-employee-drf-api.onrender.com/api/employees/1](https://company-employee-drf-api.onrender.com/api/employees/1) | Get a specific employee |
+| Method | Endpoint | Description |
+|------|------|------|
+| GET | https://company-employee-drf-api.onrender.com/api/employees | Get all employees |
+| GET | https://company-employee-drf-api.onrender.com/api/employees/1 | Get a specific employee |
+| POST | https://company-employee-drf-api.onrender.com/api/employees | Create a new employee |
+| PUT | https://company-employee-drf-api.onrender.com/api/employees/1 | Update an employee |
+| DELETE | https://company-employee-drf-api.onrender.com/api/employees/1 | Delete an employee |
 
 ---
 
@@ -187,19 +193,22 @@ company-employee-drf-api
                 └─────────────────────┘
 ```
 ---
-
-
 ## API Communication Flow
-```
-sequenceDiagram
-User->>React Frontend: Open HR System
-React Frontend->>Django API: GET /api/employees
-Django API->>Database: Fetch Employees
-Database-->>Django API: Employee Data
-Django API-->>React Frontend: JSON Response
-React Frontend-->>User: Display Employees
-```
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant ReactFrontend as React Frontend
+    participant DjangoAPI as Django REST API
+    participant DB as Database
+
+    User->>ReactFrontend: Open HR Management System
+    ReactFrontend->>DjangoAPI: GET /api/employees
+    DjangoAPI->>DB: Query Employees
+    DB-->>DjangoAPI: Return Employee Data
+    DjangoAPI-->>ReactFrontend: JSON Response
+    ReactFrontend-->>User: Display Employee List
+```
 ---
 
 ## Deployment Architecture
