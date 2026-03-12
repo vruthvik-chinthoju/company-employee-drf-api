@@ -7,10 +7,7 @@ class Company(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     about = models.TextField()
-    type = models.CharField(max_length=100,choices=(('IT','it'),
-                                                    ('Non-It','non-It'),
-                                                    ("Mobile-phones","mobile-phones"),
-                                                    ("Hr","hr")))
+    type = models.CharField(max_length=100)
 
     added_date = models.DateField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -26,8 +23,7 @@ class Employee(models.Model):
     address = models.CharField(max_length=200)
     phone_no = models.CharField(max_length=10)
     about = models.TextField()
-    position = models.CharField(max_length=50,choices=(('Manager','manager'),('developer','developer'),("tester","tester")))
-    
+    position = models.CharField(max_length=100)
     company = models.ForeignKey(Company,on_delete=models.CASCADE)
 
 

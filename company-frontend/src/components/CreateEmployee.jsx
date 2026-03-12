@@ -1,82 +1,135 @@
-import { useState } from "react";
-import { createEmployee } from "../services/api";
+import "./CreateEmployee.css";
+import { createEmployee, getCompanies } from "../services/api";
+import { useEffect, useState } from "react";
 
-function CreateEmployee() {
+function CreateEmployee({ loadEmployees }) {
 
   const [employee, setEmployee] = useState({
     name: "",
     email_id: "",
-    address: "",
     phone_no: "",
+    address: "",
     about: "",
     position: "",
     company: ""
   });
 
+  const [companies, setCompanies] = useState([]);
+  useEffect(() => {
+    getCompanies().then((res) => {
+      setCompanies(res.data);
+      // console.log(res);
+      
+    });
+  }, []);
+
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
+
     setEmployee({
       ...employee,
-      [e.target.name]: e.target.value
+      [name]: name === "company" ? Number(value) : value
     });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await createEmployee(employee);
+    try {
+      console.log(employee); // debug
 
-    alert("Employee Created");
+      await createEmployee(employee);
+
+      loadEmployees()
+
+      alert("Employee created successfully");
+
+      setEmployee({
+        name: "",
+        email_id: "",
+        phone_no: "",
+        address: "",
+        about: "",
+        position: "",
+        company: ""
+      });
+
+    } catch (error) {
+      console.log("Backend error:", error.response.data);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="form">
 
-      <input
-        name="name"
-        placeholder="Name"
-        onChange={handleChange}
-      />
+      <form onSubmit={handleSubmit}>
 
-      <input
-        name="email_id"
-        placeholder="Email"
-        onChange={handleChange}
-      />
+        <input
+          name="name"
+          placeholder="Employee Name"
+          value={employee.name}
+          onChange={handleChange}
+        />
 
-      <input
-        name="address"
-        placeholder="Address"
-        onChange={handleChange}
-      />
+        <input
+          name="email_id"
+          placeholder="Email"
+          value={employee.email_id}
+          onChange={handleChange}
+        />
 
-      <input
-        name="phone_no"
-        placeholder="Phone"
-        onChange={handleChange}
-      />
+        <input
+          name="phone_no"
+          placeholder="Phone"
+          value={employee.phone_no}
+          onChange={handleChange}
+        />
 
-      <input
-        name="about"
-        placeholder="About"
-        onChange={handleChange}
-      />
+        <input
+          name="address"
+          placeholder="Address"
+          value={employee.address}
+          onChange={handleChange}
+        />
 
-      <select name="position" onChange={handleChange}>
-        <option value="">Select Position</option>
-        <option value="Manager">Manager</option>
-        <option value="developer">Developer</option>
-        <option value="tester">Tester</option>
-      </select>
+        <input
+          name="about"
+          placeholder="About Employee"
+          value={employee.about}
+          onChange={handleChange}
+        />
 
-      <input
-        name="company"
-        placeholder="Company URL (example: /api/companies/1/)"
-        onChange={handleChange}
-      />
+        <select
+          name="position"
+          value={employee.position}
+          onChange={handleChange}
+        >
+          <option value="">Select Position</option>
+          <option value="Manager">Manager</option>
+          <option value="developer">Developer</option>
+          <option value="tester">Tester</option>
+        </select>
 
-      <button type="submit">Add Employee</button>
+        <select
+          name="company"
+          value={employee.company}
+          onChange={handleChange}
+        >
+          <option value="">Select Company</option>
 
-    </form>
+          {companies.map((company) => (
+            <option key={company.company_id} value={company.company_id}>
+              {company.name}
+            </option>
+          ))}
+        </select>
+
+        <button type="submit">Add Employee</button>
+
+      </form>
+
+    </div>
   );
 }
 
