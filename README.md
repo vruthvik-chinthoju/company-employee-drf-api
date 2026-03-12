@@ -114,29 +114,30 @@ The application demonstrates **full-stack development, REST API integration, and
 ### Home Page
 ![Home](screenshots/home.png)
 
-### API-JSON
-![Mobile](screenshots/json.png)
+### API JSON Response
+![API JSON](screenshots/json.png)
 
 ### Employees Page
 ![Employees](screenshots/employees.png)
 
 ### Employees Data
-![Employees](screenshots/employeesdata.png)
+![Employees Data](screenshots/employeesdata.png)
 
 ### Companies Page
 ![Companies](screenshots/companies.png)
 
-### Companies Page
-![Companies](screenshots/companiesdata.png)
+### Companies Data
+![Companies Data](screenshots/companiesdata.png)
 
-### API
-![Mobile](screenshots/backend.png)
+### Backend API
+![Backend](screenshots/backend.png)
 
-=### Mobile View
+### Mobile View
 ![Mobile](screenshots/mobile.jpg)
 
 ### Mobile Update
-![Mobile](screenshots/mobile1.jpg)
+![Mobile Update](screenshots/mobile1.jpg)
+
 ---
 
 # Project Structure
@@ -335,16 +336,5 @@ LinkedIn
 
 ---
 
-![React](https://img.shields.io/badge/Frontend-React-blue)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow)
-![CSS](https://img.shields.io/badge/Style-CSS3-blue)
-![HTML](https://img.shields.io/badge/Markup-HTML5-orange)
-![Django](https://img.shields.io/badge/Backend-Django-green)
-![DRF](https://img.shields.io/badge/API-Django%20REST%20Framework-red)
-![Netlify](https://img.shields.io/badge/Frontend%20Deploy-Netlify-purple)
-![Render](https://img.shields.io/badge/Backend%20Deploy-Render-orange)
-![License](https://img.shields.io/badge/License-MIT-yellow)
-
----
 
 ⭐ If you like this project, consider giving it a **star on GitHub**.
