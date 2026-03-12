@@ -114,11 +114,23 @@ The application demonstrates **full-stack development, REST API integration, and
 ### Home Page
 ![Home](screenshots/home.png)
 
+### API-JSON
+![Mobile](screenshots/json.png)
+
 ### Employees Page
 ![Employees](screenshots/employees.png)
 
+### Employees Data
+![Employees](screenshots/employeesdata.png)
+
 ### Companies Page
 ![Companies](screenshots/companies.png)
+
+### Companies Page
+![Companies](screenshots/companiesdata.png)
+
+### API
+![Mobile](screenshots/backend.png)
 
 ### Mobile View
 ![Mobile](screenshots/mobile.png)
