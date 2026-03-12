@@ -21,9 +21,19 @@
     background: rgba(0,0,0,0.3);
     color: white;
 }
+.form textarea{
+    width: 300px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 6px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: rgba(0,0,0,0.3);
+    color: white;
+}
 .form select{
-    color:white;
+    color:grey;
     /* background-color: blueviolet; */
+    background: rgba(0,0,0,0.3);
 }
 .form select:focus{
     color: black;

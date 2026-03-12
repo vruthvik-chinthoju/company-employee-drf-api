@@ -1,9 +1,17 @@
-import "./CreateCompany.css"
-
+import "./CreateCompany.css";
 import { useState } from "react";
 import { createCompany } from "../services/api";
 
 function CreateCompany() {
+
+  const companyTypes = [
+    "IT",
+    "Non-IT",
+    "Mobile Phones",
+    "HR",
+    "Finance",
+    "Other"
+  ];
 
   const [company, setCompany] = useState({
     name: "",
@@ -12,6 +20,8 @@ function CreateCompany() {
     type: "",
     active: true
   });
+
+  const [customType, setCustomType] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,7 +35,15 @@ function CreateCompany() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await createCompany(company);
+    const finalType =
+      company.type === "Other" ? customType : company.type;
+
+    const data = {
+      ...company,
+      type: finalType
+    };
+
+    await createCompany(data);
 
     alert("Company created");
 
@@ -36,6 +54,8 @@ function CreateCompany() {
       type: "",
       active: true
     });
+
+    setCustomType("");
   };
 
   return (
@@ -45,30 +65,53 @@ function CreateCompany() {
         <input
           name="name"
           placeholder="Company Name"
+          value={company.name}
           onChange={handleChange}
         />
 
         <input
           name="location"
           placeholder="Location"
+          value={company.location}
           onChange={handleChange}
         />
 
-        <input
+        <textarea
           name="about"
           placeholder="About company"
+          value={company.about}
           onChange={handleChange}
         />
 
-        <select name="type" onChange={handleChange}>
-          <option value="">Select type</option>
-          <option value="IT">IT</option>
-          <option value="Non-It">Non-IT</option>
-          <option value="Mobile-phones">Mobile Phones</option>
-          <option value="Hr">HR</option>
+        <select
+          name="type"
+          value={company.type}
+          onChange={handleChange}
+        >
+          <option value="">Select company type</option>
+
+          {companyTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+
         </select>
 
-        <select name="active" onChange={handleChange}>
+        {company.type === "Other" && (
+          <input
+            type="text"
+            placeholder="Enter company type"
+            value={customType}
+            onChange={(e) => setCustomType(e.target.value)}
+          />
+        )}
+
+        <select
+          name="active"
+          value={company.active}
+          onChange={handleChange}
+        >
           <option value="true">Active</option>
           <option value="false">Inactive</option>
         </select>

@@ -4,6 +4,17 @@ import { useEffect, useState } from "react";
 
 function CreateEmployee({ loadEmployees }) {
 
+  const positions = [
+    "Support",
+    "Software Developer",
+    "Frontend Developer",
+    "Manager",
+    "HR",
+    "Senior Developer",
+    "Business Manager",
+    "Other"
+  ];
+
   const [employee, setEmployee] = useState({
     name: "",
     email_id: "",
@@ -14,15 +25,15 @@ function CreateEmployee({ loadEmployees }) {
     company: ""
   });
 
+  const [customPosition, setCustomPosition] = useState("");
+
   const [companies, setCompanies] = useState([]);
+
   useEffect(() => {
     getCompanies().then((res) => {
       setCompanies(res.data);
-      // console.log(res);
-      
     });
   }, []);
-
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,12 +47,21 @@ function CreateEmployee({ loadEmployees }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const finalPosition =
+      employee.position === "Other"
+        ? customPosition
+        : employee.position;
+
+    const data = {
+      ...employee,
+      position: finalPosition
+    };
+
     try {
-      console.log(employee); // debug
 
-      await createEmployee(employee);
+      await createEmployee(data);
 
-      loadEmployees()
+      loadEmployees();
 
       alert("Employee created successfully");
 
@@ -55,8 +75,10 @@ function CreateEmployee({ loadEmployees }) {
         company: ""
       });
 
+      setCustomPosition("");
+
     } catch (error) {
-      console.log("Backend error:", error.response.data);
+      console.log("Backend error:", error.response?.data);
     }
   };
 
@@ -93,12 +115,12 @@ function CreateEmployee({ loadEmployees }) {
           onChange={handleChange}
         />
 
-        <input
+        <textarea
           name="about"
           placeholder="About Employee"
           value={employee.about}
           onChange={handleChange}
-        />
+        ></textarea>
 
         <select
           name="position"
@@ -106,10 +128,23 @@ function CreateEmployee({ loadEmployees }) {
           onChange={handleChange}
         >
           <option value="">Select Position</option>
-          <option value="Manager">Manager</option>
-          <option value="developer">Developer</option>
-          <option value="tester">Tester</option>
+
+          {positions.map((position) => (
+            <option key={position} value={position}>
+              {position}
+            </option>
+          ))}
+
         </select>
+
+        {employee.position === "Other" && (
+          <input
+            type="text"
+            placeholder="Enter Position"
+            value={customPosition}
+            onChange={(e) => setCustomPosition(e.target.value)}
+          />
+        )}
 
         <select
           name="company"
@@ -123,6 +158,7 @@ function CreateEmployee({ loadEmployees }) {
               {company.name}
             </option>
           ))}
+
         </select>
 
         <button type="submit">Add Employee</button>
