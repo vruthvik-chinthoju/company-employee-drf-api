@@ -16,7 +16,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .info{
-    height: 300px;
+    min-height: 300px;
     /* background-color: rgba(100, 149, 237, 0.4);  */
     background-color: rgb(113, 170, 164);
     backdrop-filter: blur(6px);
