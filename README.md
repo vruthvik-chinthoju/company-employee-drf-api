@@ -140,25 +140,57 @@ company-employee-drf-api
 
 ---
 ## System Architecture
-
-```mermaid
-graph TD
-A[User Browser] --> B[React Frontend - Netlify]
-B --> C[Django REST API - Render]
-C --> D[Database]
----
-
+```
+                ┌─────────────────────┐
+                │        Users        │
+                │  HR / Admin Panel   │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │     React App       │
+                │  (Frontend UI)      │
+                │                     │
+                │ • Employee Form     │
+                │ • Employee List     │
+                │ • Dashboard         │
+                │ • Axios API Calls   │
+                └──────────┬──────────┘
+                           │ HTTP Requests
+                           ▼
+                ┌─────────────────────┐
+                │   Django REST API   │
+                │                     │
+                │ • Employee CRUD     │
+                │ • Authentication    │
+                │ • API Endpoints     │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │   Django Backend    │
+                │                     │
+                │ • Models            │
+                │ • Serializers       │
+                │ • Views             │
+                │ • Business Logic    │
+                └──────────┬──────────┘
+                           │
+                           ▼
+                ┌─────────────────────┐
+                │      Database       │
+                │ PostgreSQL/SQLite   │
+                │                     │
+                │ • Employee Table    │
+                │ • Department Table  │
+                │ • Attendance Table  │
+                └─────────────────────┘
 ```
 ---
 
----
 
-# 2️⃣ API Communication Flow
-
-```markdown
 ## API Communication Flow
-
-```mermaid
+```
 sequenceDiagram
 User->>React Frontend: Open HR System
 React Frontend->>Django API: GET /api/employees
@@ -170,23 +202,28 @@ React Frontend-->>User: Display Employees
 
 ---
 
-# 3️⃣ Deployment Architecture
-
-```markdown
 ## Deployment Architecture
 
-```mermaid
-graph LR
-A[User] --> B[Netlify - React Frontend]
-B --> C[Render - Django API]
-C --> D[Database]
----
-
 ```
+
+           Internet Users
+                 │
+                 ▼
+        Netlify (React Frontend)
+                 │
+                 ▼
+          Render / Railway
+        (Django REST Backend)
+                 │
+                 ▼
+            PostgreSQL
+            Database
+```
+
 ---
 ## Application Flow
 
-```mermaid
+```
 flowchart TD
 
 A[User Opens Website] --> B[React Frontend - Netlify]
